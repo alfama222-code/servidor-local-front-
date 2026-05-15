@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 
 
-export const Tavela = () => {
+
+export function Tavela() {
+    
     return (
         <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8"> {/* Container principal */}
 
@@ -28,7 +30,6 @@ export const Tavela = () => {
                         </span>
                     </Button>
                 </div>
-
             </div>
 
 
@@ -57,6 +58,7 @@ export const Tavela = () => {
                                 View request <ChevronRight />
                             </Button></td>
                         </tr>
+
                         <tr className="border-t">
                             <td className="text-left px-4 py-2">
                                 <div className="flex items-center gap-3"> {/* Container Flexbox */}
@@ -144,7 +146,6 @@ export const Tavela = () => {
                     </tbody>
                 </table>
             </div>
-
         </div>
     )
 }   
