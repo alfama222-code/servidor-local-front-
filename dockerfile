@@ -1,21 +1,20 @@
- # especifica versao de sistema operacional e runtime do node 
-FROM node:22-alpine 
+#verifica o sistema operacional base
+FROM node:20-alpine
 
- # define o diretorio de trabalho no container
- WORKDIR /app
+#cria a pasta /app
+WORKDIR /app
 
-#copia os arquivos package.jason e packge.lock.jason para pasta app
-COPY package*.json ./
+#copia os arquivos de configuração package.json e package-lock.json para a pasta /app
+COPY package.json .
 
-#instala as dependencias do projeto
+#instala as dependências
 RUN npm install
 
-#copia o restante dos arquivos da aplicação para a pasta app
+#copia o resto dos arquivos do projeto para a pasta /app
 COPY . .
 
 #expõe a porta 3000
 EXPOSE 3000
 
-# comando que será executado quando o container for iniciado
-CMD [ "npm", "run", "dev" ]
-
+# comando que vai ser executado quando o container for iniciado
+CMD ["npm", "run", "dev"]
