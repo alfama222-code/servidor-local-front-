@@ -7,8 +7,6 @@ import NavLinks from "./nav-linls";
 
 export default function NaveBar() {
 
-    
-
     return (
 
         <header className="h-16 rounded-2xl bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 flex items-center justify-between shadow-sm">
@@ -18,13 +16,14 @@ export default function NaveBar() {
             </div>
 
             <div className="flex items-center gap-4 min-w-[200px]">
-                <h1 className="text-xl font-bold  dark:text-white hidden sm:block text-blue-500">HandyConnect</h1>
+                <h1 className="text-xl font-bold  dark:text-white hidden sm:block text-blue-500">
+                    HandyConnect</h1>
             </div>
 
             {/* Drawer para mobile */}
             <Drawer direction="right">
                 <DrawerTrigger asChild className="md:hidden ">
-                    <Button variant="outline">||</Button>
+                    <Button variant="outline"></Button>
                 </DrawerTrigger>
 
                 <DrawerContent className="p-4  max-w-xs text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">

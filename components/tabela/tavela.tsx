@@ -1,10 +1,13 @@
-
-import { FilterIcon } from "@/assets/icons/filter";
+"use client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 
+
+<<<<<<< HEAD
 
 export function Tavela() {
     
@@ -30,22 +33,87 @@ export function Tavela() {
                         </span>
                     </Button>
                 </div>
+=======
+export const Tavela = () => {
+    const [prestacaoServico, setPrestacaoServico] = useState<any[]>([]);
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch(
+                "http://localhost:8080/prestacao_servico/",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            if (response.status === 200) {
+                toast.success(
+                    "Prestação de serviços buscada com sucesso!"
+                );
+
+                const data = await response.json();
+
+                console.log(data);
+
+                setPrestacaoServico(data.data);
+            } else {
+                toast.error(
+                    "Erro ao buscar prestação de serviços!"
+                );
+            }
+        } catch (error) {
+            console.error(error);
+
+            toast.error(
+                "Erro ao conectar com o servidor!"
+            );
+        }
+    };
+
+    return (
+        <div>
+            <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4">
+                <span className="text-2xl font-bold">
+                    Active Request
+                </span>
+>>>>>>> ff3c86f22bb6f4c26d0616e1eae9dad2dab4553e
             </div>
 
-
-            <div className="w-full h-full border-1 border-slate dark:border-gray-600/30 rounded-xl overflow-hidden">
-                <table className="border-1  w-full border-slate/50 dark:border-gray-500 rounded-xl overflow-hidden bg-white dark:bg-slate-900">
+            <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
+                <table className="w-full rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800">
                     <thead>
-                        <tr className="bg-slate-300 dark:bg-slate-800 rounded-xl ">
-                            <th className="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Service Provider </th>
-                            <th className="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Status</th>
-                            <th className="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Est.Price/ details</th>
-                            <th className="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Dates</th>
-                            <th className="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Action</th>
+                        <tr className="bg-slate-100 dark:bg-slate-900">
+                            <th className="px-4 py-2 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
+                                Service Details
+                            </th>
+
+                            <th className="px-4 py-2 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
+                                Status
+                            </th>
+
+                            <th className="px-4 py-2 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
+                                Est.Price
+                            </th>
+
+                            <th className="px-4 py-2 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
+                                Dates
+                            </th>
+
+                            <th className="px-4 py-2 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
+                                Action
+                            </th>
                         </tr>
                     </thead>
 
                     <tbody>
+<<<<<<< HEAD
                         <tr className="border-t border-spacing-5">
 
                             <td className="text-left px-4 py-2"> <p className="font-bold">Leaking Pipe Repair</p>
@@ -70,82 +138,106 @@ export function Tavela() {
                                         <p className="font-bold">Install Ceiling Fan</p>
                                         <span className="text-slate-500">Sparky electrics LLC</span>
                                     </div>
+=======
+                        {/* Linha fixa */}
+                        <tr className="border-t border-slate-200 dark:border-slate-700">
+                            <td className="px-4 py-2">
+                                <div className="text-black font-medium flex flex-col">
+                                    <p>Leaking Pipe Repair</p>
+                                    <span className="text-slate-500">plumbing</span>
+>>>>>>> ff3c86f22bb6f4c26d0616e1eae9dad2dab4553e
                                 </div>
                             </td>
-                            <td className="text-left px-4 py-2"><span className="bg-blue-50 rounded-xl px-4 py-2 font-semibold text-sm h-auto text-blue-500"> Quote reactived</span></td>
-                            <td className="text-left px-4 py-2"> <p className="font-semibold">$125.00 </p> <span className=" text-slate-500">$50/hr +$25 materials  </span></td>
-                            <td className="text-left px-4 py-2"><span className="flex items-center w-full p-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl font-medium">Req:Oct 24,2023 </span></td>
-                            <td className="text-left px-4 py-2"><Button className="bg-blue-500 text-white font-semibold rounded-xl px-4 py-2 h-auto  transition-all cursor-pointer hover:bg-blue-600 shadow-md">
-                                Review quote
-                            </Button></td>
+
+                            <td className="px-4 py-2">
+                                <span className="text-slate-500 font-medium">
+                                    pending quotes
+                                </span>
+                            </td>
+                            <td className="px-4 py-2">
+                                <span className="text-slate-500">
+                                    waiting for estimates
+                                </span>
+                            </td>
+
+                            <td className="px-4 py-2">
+                                <span className="text-slate-500">
+                                    Today
+                                </span>
+                            </td>
+
+                            <td className="px-4 py-2">
+                                <button className=" text-slate-500 hover:text-blue-500 flex items-center gap-2 cursor-pointer">
+                                    View Request
+                                    <ChevronRight />
+                                </button>
+                            </td>
                         </tr>
-                        <tr className="border-t">
-                            <td className="text-left px-4 py-2">
-                                <div className="flex items-center gap-3"> {/* Container Flexbox */}
-                                    <Avatar>
-                                        <AvatarImage src="https://github.com/shadcn.png" />
-                                        <AvatarFallback>CN</AvatarFallback>
-                                    </Avatar>
-                                    <div className="flex-col"> {/* Container para o texto ficar empilhado verticalmente entre si */}
-                                        <p className="font-bold">Deck Staining </p>
-                                        <span className=" text-slate-500"><p>HoodWorks Pros (2 quotes)</p></span>
+
+                        {/* Dados vindos da API */}
+                        {prestacaoServico.map((item: any) => (
+                            <tr
+                                key={item.id}
+                                className="border-t border-slate-200 dark:border-slate-700"
+                            >
+                                <td className="text-left px-4 py-2">
+                                    <div className="flex items-center gap-3">
+                                        <Avatar>
+                                            <AvatarImage src="https://github.com/shadcn.png" />
+                                            <AvatarFallback>
+                                                CN
+                                            </AvatarFallback>
+                                        </Avatar>
+
+                                        <div className="flex flex-col">
+                                            <p className="font-bold">
+                                                {item.disignacao}
+
+                                            </p>
+
+                                            <span className="text-slate-500">
+                                                {item.disignacao}
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td className="text-left px-4 py-2"><span className="bg-blue-50 rounded-xl px-4 py-2 font-semibold text-sm h-auto text-blue-500"> Quotes reactived</span></td>
-                            <td className="text-left px-4 py-2"> <p className="font-semibold">$350.00 -$420.00</p> <span className=" text-slate-500">Est. 6-8 hours  </span></td>
-                            <td className="text-left px-4 py-2"><span className="flex items-center w-full p-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl font-medium">Req:Oct 22,2023 </span></td>
-                            <td className="text-left px-4 py-2"><Button className="bg-blue-500 text-white font-semibold rounded-xl px-4 py-2 h-auto cursor-pointer transition-all hover:bg-blue-600 shadow-md">
-                                Compare quote
-                            </Button></td>
-                        </tr>
+                                </td>
 
+                                <td className="text-left px-4 py-2">
+                                    <span
+                                        className={`${item.estado === "pendente"
+                                            ? "bg-orange-100 text-orange-500"
+                                            : item.estado === "aceite"
+                                                ? "bg-green-50 text-green-500"
+                                                : "bg-red-50 text-red-500"
+                                            } rounded-xl px-4 py-2 font-semibold text-sm inline-block`}
+                                    >
+                                        {item.estado}
+                                    </span>
+                                </td>
 
-                        <tr className="border-t">
-                            <td className="text-left px-4 py-2">
-                                <div className="flex items-center gap-3"> {/* Container Flexbox */}
-                                    <Avatar>
-                                        <AvatarImage src="https://github.com/shadcn.png" />
-                                        <AvatarFallback>CN</AvatarFallback>
-                                    </Avatar>
-                                    <div className="flex-col"> {/* Container para o texto ficar empilhado verticalmente entre si */}
-                                        <p className="font-bold">IKEA Wardrobe Assembly </p>
-                                        <span className=" text-slate-500"><p> Bob's Builds</p></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="text-left px-4 py-2"><span className="bg-green-100 rounded-xl px-4 py-2 font-semibold text-sm h-auto text-green-500"> Booked</span></td>
-                            <td className="text-left px-4 py-2"> <p className="font-semibold">$85.00 </p> <span className=" text-green-500">15% frist-time discount  </span></td>
-                            <td className="text-left px-4 py-2"><span className="flex items-center w-full p-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl font-medium">Tomorow, 10:00AM</span></td>
-                            <td className="text-left px-4 py-2"><Button className="bg-white-500 text-black font-semibold rounded-xl px-4 py-2 h-auto cursor-pointer transition-all hover:bg-white shadow-md">
-                                Manage Booking
-                            </Button></td>
-                        </tr>
+                                <td className="text-left px-4 py-2">
+                                    <p className="text-slate-500">
+                                        {item.subtotal}
+                                    </p>
+                                </td>
 
+                                <td className="text-left px-4 py-2">
+                                    <span className="text-slate-500">
+                                        Req: Today{" "}
+                                        {item.created_at || item.updated_at}
+                                    </span>
+                                </td>
 
-                        <tr className="border-t">
-                            <td className="text-left px-4 py-2">
-                                <div className="flex items-center gap-3"> {/* Container Flexbox */}
-                                    <Avatar>
-                                        <AvatarImage src="https://github.com/shadcn.png" />
-                                        <AvatarFallback>CN</AvatarFallback>
-                                    </Avatar>
-                                    <div className="flex-col"> {/* Container para o texto ficar empilhado verticalmente entre si */}
-                                        <p className="font-bold">Interior painting (Living Room)</p>
-                                        <span className=" text-slate-500"><p> Colors splash Pros</p></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="text-left px-4 py-2"><span className="bg-[#DFE3E9] rounded-xl px-4 py-2 font-semibold text-sm h-auto text-[#A7ACB1]"> Completed</span></td>
-                            <td className="text-left px-4 py-2"> <p className="font-slate-500">$450.00</p>  </td>
-                            <td className="text-left px-4 py-2"><span className="flex items-center w-full p-3 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl font-medium">Req: Oct 15,2023 </span></td>
-                            <td className="text-left px-4 py-2"><Button className="bg-white-500 text-black font-semibold rounded-xl px-4 py-2 h-auto cursor-pointer transition-all hover:bg-white shadow-md">
-                                Recept & Details <ChevronRight />
-                            </Button></td>
-                        </tr>
+                                <td className="text-left px-4 py-2">
+                                    <Button className="bg-blue-600 text-white hover:bg-blue-500 opacity-90 cursor-pointer font-semibold rounded-xl px-4 py-2 h-auto">
+                                        Review quote
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
-    )
-}   
+    );
+};
