@@ -1,0 +1,97 @@
+# export interface EmpresaDBType {
+#     id: string,
+#     designacao: string,
+#     descricao: string,
+#     nif: string,
+#     icone: string,
+#     id_utilizador: string,
+#     localizacao:string,
+#     enabled: boolean,
+#     created_at: string,
+#     updated_at: string
+# }
+
+components:
+  schemas:
+    empresa:
+      type: object
+      properties:
+        id:
+          type: intenger
+          example: 1
+        designacao:
+          type: string
+          example: "servico de limpeza"
+        descricao:
+          type: string
+          example: "servico de limpeza para residiencias"
+        nif:
+          type: string
+          example: "123456789"
+        icone:
+          type: string
+          example: "servico de limpeza para residiencias"
+        id_utilizador:
+          type: string
+          example: "123456789"
+        localizacao:
+          type: string
+          example: "servico de limpeza para residiencias"
+        enabled:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          example: "2022-01-01"
+        updated_at: 
+          type: string
+          example: "2022-01-01"
+    #create empresa
+    CreateEmpresa:
+      type: object
+      properties:
+        designacao:
+          type: string
+          example: "servico de limpeza"
+        descricao:
+          type: string
+          example: "servico de limpeza para residiencias"
+        nif:
+          type: string
+          example: "123456789"
+        icone:
+          type: string
+          example: "servico de limpeza para residiencias"
+        localizacao:
+          type: string
+          example: "servico de limpeza para residiencias"
+        enabled:
+          type: boolean
+          example: true
+ #schemas genericos para sucesso
+    ResponseSucess:
+      type: object
+      properities:
+      message:
+        type: srtring
+        example: "Servico criado comm sucesso"
+      status:
+        type: bollean
+        example: true
+      date:
+        type: object
+        $ref: "#components/schemas/empresa"
+  
+    #schemas generico de resposta de erro
+    ReferencesError:
+      type: object
+      properties:
+      message: 
+        type: string
+        example: error ao buscar empresa 
+      status:
+        type: bollean
+        example: false
+      data:
+        type: object
+        properties:

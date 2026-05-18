@@ -1,0 +1,114 @@
+
+# export interface prestacaoType {
+#     id: string,
+#     disignacao: string,
+#     subtotal: number,
+#     horasEstimadas: number,
+#     id_prestador: string,
+#     id_servico: string,
+#     precoHora: number,
+#     estado: string,
+#     id_orcamento: string,
+#     enabled: boolean,
+#     created_at: string,
+#     update_at: string
+
+
+components:
+  schemas:
+    prestacao:
+      type: object
+      properties:
+        id:
+          type: intenger
+          example: 1
+        disignacao:
+          type: string
+          example: "servico de limpeza"
+        subtotal:
+          type: number
+          example: 1000
+        horasEstimadas:
+          type: number
+          example: 
+        id_prestador:
+          type: string
+          example: 1
+        id_servico:
+          type: string
+          example:
+        precoHora:
+          type: number
+          example: 1000
+        estado:
+          type: string
+          example: "aceita"
+        id_orcamento:
+          type: string
+          example: 
+        enabled:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          example: "2022-01-01"
+        updated_at: 
+          type: string
+          example: "2022-01-01"
+    #create for prestacao
+    CreatePrestacao:
+      type: object
+      properties:
+        disignacao:
+          type: string
+          example: "servico de limpeza"
+        subtotal:
+          type: number
+          example: 1000
+        horasEstimadas:
+          type: number
+          example: 
+        id_prestador:
+          type: string
+          example: 1
+        id_servico:
+          type: string
+          example:
+        precoHora:
+          type: number
+          example: 1000
+        estado:
+          type: string
+          example: "aceita"
+
+   
+                      
+  #schemas genericos para sucesso 
+    ResponseSucess:
+      type: object
+      properities:
+        message:
+          type: srtring
+          example: "Servico criado comm sucesso"
+        status:
+          type: bollean
+          example: true
+        date:
+          type: object
+          $ref: "#components/schemas/prestacao"
+  
+    #schemas generico de resposta de erro
+    ReferencesError:
+      type: object
+      properties:
+        message: 
+          type: string
+          example: error ao buscar prestacao 
+        status:
+          type: bollean
+          example: false
+        data:
+          type: array
+          properties:
+           
+    

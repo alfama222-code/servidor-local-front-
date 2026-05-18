@@ -1,0 +1,199 @@
+
+paths:
+  /users:
+    get:
+      tags:
+      - usuario
+      summary: listar todos os usuarios
+      description: retorna ums lista de todos os usuarios disponiveis
+      responses:
+        "200":
+          description: lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                $ref: "#/components/schemas/users"
+        "404":
+          descripition: nenhum usuario encontrado
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+  /users/create:
+    post: 
+      tags:
+        - usuario
+      summary: criar um novo usuario
+      description: criar um novo usuario
+      requestBody:
+        requiered: true
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/Createusers"
+      responses:
+        "200":
+          description: "usuario criado com sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          description: " dados invalidos"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+  /users/getall:  
+    get:
+      tags:
+        - usuario
+      summary: buscar um  usuario por id 
+      description: retorna um usuario especifico
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de usuario
+          schema:
+            type: intenger
+            example: 1
+      responses:  
+        "200":
+          description: usuario encontrado
+          content:
+            aplication/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: " usuario nao encontrado"
+          content:
+            aplication/json: 
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+  /users/update/{id}:
+    put:
+      tags:
+      - usuario
+      summary: atualizar um usuario 
+      description: atualizar um usuario expecifico por id 
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de um usuario a ser atualizado
+          schemas:
+            type: interger
+            example:
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schemas:
+              type: object 
+      respponses:
+      "200":
+        description: usuario atualizado com sucesso
+        content:
+          aplication/json:
+            schemas:
+              type: object
+              $ref: "#/components/schemas/ResponseSucess"
+      "400":
+        decription: dados invalidos
+        content:
+          aplication/json:
+            schemas:
+              type: object
+              $ref: "#/components/schemas/ReferencesError"
+              
+  /users/delete/{id}:
+    delete:
+      tags:
+      - usuario
+      summary: deletar usuario
+      description: apagar usuario especifico por id
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id do usuario apagado
+          schema:
+            type: interger
+            example: 1
+      responses:
+        "200":
+          description: usuario deletado com sucesso
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+            dedscription: usuario nao deletado
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                  $ref: "#/components/schemas/ReferencesError"
+        "400":
+            description: usuario invalido
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                  $ref: "#/components/schemas/ReferencesError"
+
+
+
+  /users/login:
+    post:
+      summary: login de um usuario
+      tags:
+      - usuario
+      description: login de um usuario
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/loginUsers"
+              
+      responses:
+        "200":
+          description: usuario encontrado
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+            dedscription: usuario nao encontrado
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                  $ref: "#/components/schemas/ReferencesError"
+        "400":
+            description: dados invalidos
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                  $ref: "#/components/schemas/ReferencesError"
+
+
+
+
+            
+

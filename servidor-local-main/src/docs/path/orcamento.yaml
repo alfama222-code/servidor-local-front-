@@ -1,0 +1,166 @@
+
+# export interface orcamentoType {
+#     id: string,
+#     total: number,
+#     id_utilizador: string,
+#     enabled: boolean,
+#     created_at: string,
+#     updated_at: string
+
+paths:
+  /orcamento:
+    get:
+      tags:
+      - orcamento
+      summary: listar todos os orcamentos
+      dedscription: retorna ums lista de todos os orcamentos disponiveis
+      responses:
+        "200":
+          descriptions: lista de orcamentos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                 $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          descripitions: nenhum orcamento encontrado
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /orcamento/create:
+    post:  
+      tags:
+      - orcamento     
+      summary: criar um novo orcamento
+      descricao: criar um novo orcamento
+      requestbody:
+        requiered: true
+        content:
+          aplication/json:
+          schema:
+           $ref: "#/components/schemas/CreateOrcamento"
+      responses:
+        "200":
+          description: "orcamento criado com sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          description: " dados invalidos"
+          content:
+            aplication/json:  
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+  /orcamento/getall:
+    get:
+      tags:
+      - orcamento
+      summary: buscar um orcamento por id 
+      description: retorna um orcamento especifico
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de orcamento
+          schema:
+            type: intenger
+            example: 1
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/orcamento"
+      responses:
+        "200":
+          description: orcamento encontrado 
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description:  orcamento nao encontrado
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+  /orcamento/update/{id}:
+    put:
+      tags:
+       - orcamento
+      summary: atualizar um orcamento
+      description: atualizar um orcamento expecifico por id
+      parametres:
+      - nome: id
+        in: path
+        required: true
+        description: id de um orcamento a ser atualizado
+        schema:
+          type: interger
+          example:
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/orcamento"
+      responses:
+        "200":
+          description: orcamento atualizado com sucesso
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          decription: dados invalidos
+          content:
+            aplication/json:
+              schema:  
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+        "404":
+          description: " orcamento nao encontrado"
+          content:
+            aplication/json:
+              schema:
+                type: object
+              $ref: "#/components/schemas/ReferencesError"
+  /orcamento/delete/{id}:
+    delete: 
+      tags:
+       - orcamento
+      summary: deletar orcamento
+      description: apagar orcamento especifico por id
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          content:
+            aplication/json:
+              schema:
+                $ref: "#/components/schemas/orcamento"
+      responses:
+        "200":
+          description: orcamento apagada com sucesso
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: orcamento nao encontrado
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"

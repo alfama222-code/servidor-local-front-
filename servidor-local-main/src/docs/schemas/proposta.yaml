@@ -1,0 +1,87 @@
+# export interface propostaType {
+#     id: string,
+#     id_prestacao: number,
+#     precoHora: number,
+#     horaEstimadas: number,
+#     estado: string,
+#     enabled: boolean,
+#     created_at: string,
+#     updated_at: string
+# }
+
+components:
+  schemas:
+    proposta:
+      type: object
+      properties:
+        id:
+          type: intenger
+          example: 1
+        id_prestacao:
+          type: number
+          example: 1
+        precoHora:
+          type: number
+          example: 1000
+        horaEstimadas:
+          type: number
+          example: 10
+        estado:
+          type: string
+          example: "aceita"
+        enabled:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          example: "2022-01-01"
+        updated_at: 
+          type: string
+          example: "2022-01-01"
+# create for proposta
+    CreateProposta:
+      type: object
+      properties:
+        id_prestacao:
+          type: number
+          example: 1
+        precoHora:
+          type: number
+          example: 1000
+        horaEstimadas:
+          type: number
+          example: 10
+        estado:
+          type: string
+          example: "aceita"
+        enabled:
+          type: boolean
+          example: true
+    #schemas genericos para sucesso
+    ResponseSucess:
+      type: object
+      properities:
+      message:
+        type: srtring
+        example: "Servico criado comm sucesso"
+      status:
+        type: bollean
+        example: true
+      date:
+        type: object
+        $ref: "#components/schemas/proposta"
+  
+    #schemas generico de resposta de erro
+    ReferencesError:
+      type: object
+      properties:
+        message: 
+          type: string
+          example: error ao buscar prestacao 
+        status:
+          type: bollean
+          example: false
+        data:
+          type: object
+          properties:
+    

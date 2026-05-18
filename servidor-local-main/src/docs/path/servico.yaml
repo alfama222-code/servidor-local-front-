@@ -1,0 +1,196 @@
+# path/servico.yaml
+
+paths:
+  /servico:
+    get:
+      summary: listar todos os servicos 
+      tags:
+        - Servico
+      description: retorna ums lista de todos os servicos disponiveis
+      responses:
+        "200":
+          descriptions: lista de servico
+          content:
+            application/json:
+              schemas:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          descripitions: nenhum servico encontrado
+          content:
+            aplication/json:
+              schemas:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+  /Servico/create:
+    post: 
+      tags:
+      - Servico
+      summary: criar um novo servico
+      descricao: criar um novo servico
+      requestbody:
+        requiered: true
+        content:
+          aplication/json:
+          schemas:
+            type: object
+      responses:
+        "200":
+          description: "servico criado com sucesso"
+          content:
+            aplication/json:
+              schemas:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          description: " dados invalidos"
+          content:
+            aplication/json:
+              schemas:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+        
+# servico apnhar por id
+  /Servico/getall:
+    get:
+      tags:
+      - Servico
+      summary: buscar um  servico por id 
+      description: retorna um servico especifico
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de servico
+          schemas:
+            type: intenger
+            example: 1
+      response: 
+        "200":
+          description: servico encontrado
+          content:
+            aplication/json:
+            schemas:
+              type: object
+              $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: " servico nao encontrado"
+          content:
+            aplication/json:
+              schemas:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+          "400":
+            description: dados invalidos
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                  $ref: "#/components/schemas/ReferencesError"
+
+
+                  # servico de atualizacao por id
+  /Servico/update/{id}:
+    put:
+      tags:
+      - Servico
+      summary: atualizar um servico 
+      description: atualizar um servico expecifico por id 
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de um servico a ser atualizado
+          schemas:
+            type: interger
+            example:
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schemasa:
+              type: object
+      "200":
+        description: servico encontrado
+        content:
+          aplication/json:
+          schemas:
+              type: object
+              $ref: "#/components/schemas/ResponseSucess"
+      "400":
+        decription: dados invalidos
+        content:
+          aplication/json:
+            schemas:
+              type: object
+              $ref: "#/components/schemas/ReferencesError"
+      "404":
+        description: " servico nao encontrado"
+        content:
+          aplication/json:
+            schemas:
+              type: object
+              $ref: "#/components/schemas/ReferencesError"        
+
+  /servico/delete/{id}:
+      delete:
+        tags:
+        - Servico
+      summary: deletar servico
+      description: apagar servico especifico por id
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id do servico apagado
+          schemas:
+            type: interger
+            example: 1
+      responses:
+        "200":
+          description: servico encontrado
+          content:
+            aplication/json:
+              schemas:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: servico nao encontrado
+          content:
+            aplication/json:
+              schemas:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"   
+  /servico/getall-detalhada:
+    get:
+      tags:
+      - Servico
+      summary: buscar todos os servicos detalhada 
+      description: retorna uma lista de todos os servicos detalhada 
+      parametres:
+        - nome: limit
+          in: query
+          required: false
+          descripitions: retorna uma lista de todos os servicos detalhada 
+          schema:
+            type: string
+            example: 
+      responses:
+        "200":
+          description: lista de servicos detalhada
+          content:
+            aplication/json:
+              schema:
+                type: array 
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: nenhum servico detalhada encontrado
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+                
+    

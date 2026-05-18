@@ -1,0 +1,235 @@
+# export interface prestacaoType {
+#     id: string,
+#     disignacao: string,
+#     subtotal: number,
+#     horasEstimadas: number,
+#     id_prestador: string,
+#     id_servico: string,
+#     precoHora: number,
+#     estado: string,
+#     id_orcamento: string,
+#     enabled: boolean,
+#     created_at: string,
+#     update_at: string
+
+# }
+paths:
+  /prestacao:
+    get:
+      tags:
+        - prestacao
+      summary: listar todas as prestacoes
+      description: retorna ums lista de todas as prestacoes disponiveis
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/prestacao"
+      responses:
+        "200":
+          descriptions: lista de prestacoes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                $ref: "#/components/schemas/ResponseSucess"
+                
+        "404":
+          descripitions: nenhuma prestacao encontrada
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /prestacao/create:
+    post:
+      tags:
+        - prestacao
+      summary: criar uma nova prestacao
+      descricao: criar uma nova prestacao
+      requestbody:
+        requiered: true
+        content:
+          aplication/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/CreatePrestacao"
+      responses:
+        "200":
+          description: "prestacao criada com sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          description: " dados invalidos"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /prestacao/getall:
+    get:
+      tags:
+        - prestacao
+      summary: buscar uma prestacao por id
+      description: retorna uma prestacao especifico
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de prestacao
+          schema:
+            type: intenger
+            example: 1
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/prestacao"
+      responses:
+        "200":
+          description: proposta encontrada
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: "proposta nao encontrada"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /prestacao/update/{id}:
+    put:
+      tags:
+        - prestacao
+      summary: atualizar uma prestacao
+      description: atualizar uma prestacao expecifico por id
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de uma prestacao a ser atualizado
+          schema:
+            type: interger
+            example:
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/prestacao"
+      "200":
+        description: prestacao atualizada com sucesso
+        content:
+          aplication/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/ResponseSucess"
+      "400":
+        decription: dados invalidos
+        content:
+          aplication/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/ReferencesError"
+        "404":
+          description: " prestacao nao encontrada"
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /prestacao/delete/{id}:
+    delete:
+      tags:
+        - prestacao
+      summary: deletar prestacao
+      description: apagar prestacao especifico por id
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          content:
+            aplication/json:
+              schema:
+                $ref: "#/components/schemas/prestacao"
+      responses:
+        "200":
+          description: prestacao apagada com sucesso
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: prestacao nao encontrada
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /prestacao-servico/getall-detalhada:
+    get:
+      tags:
+        - prestacao
+      summary: buscar todas as prestacoes de servico detalhada
+      descripitions: retorna uma lista de todas as prestacoes de servico detalhada
+      parametres:
+        -nome: limit
+        in: query
+        required: false
+        description: retorna uma lista de todas as prestacoes de servico detalhada
+        schema:
+          type: string
+          example:
+      responses:
+        "200":
+          description: lista de prestacoes de servico detalhada
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: nenhuma prestacao de servico detalhada encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /prestacao/GetAllprestacaoServicoBycategoriaDBType:
+    get:
+      tags: 
+        -categoria
+      summary: buscar todas as prestacoes de servico por categoria
+      descripitions: retorna uma lista de todas as prestacoes de servico por categoria
+      parametres:
+        -nome: limit
+        in: query
+        required: false
+        schema: 
+          type: string
+          example:
+      responses:
+        "200":
+          description: lista de prestacoes de servico por categoria
+          content:
+            application/json:
+              schema:
+                type: array 
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: nenhuma prestacao de servico por categoria encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  

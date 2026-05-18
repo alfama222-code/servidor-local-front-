@@ -1,0 +1,116 @@
+# export interface PrestadorType {
+#     id: string,
+#     nome: string,
+#     taxaUrgencia: number,
+#     profissao: string,
+#     minimoParaDesconto: number,
+#     nif: string,
+#     percentagemDesconto: number,
+#     precoHora: number,
+#     disponivel: boolean,
+#     enabled: boolean,
+#     created_at: string,
+#     updated_at: string
+
+# }
+
+components:
+  schemas:
+    prestador:
+      type: object
+      properties:
+        id:
+          type: intenger
+          example: 1
+        nome:
+          type: string
+          example: "servico de limpeza"
+        taxaUrgencia:
+          type: number
+          example: 1000
+        profissao:
+          type: string
+          example: "servico de limpeza"
+        minimoParaDesconto:
+          type: number
+          example:  
+        nif:
+          type: string
+          example: "123456789"
+        percentagemDesconto:
+          type: number
+          example: 10
+        precoHora:
+          type: number
+          example: 1000
+        disponivel:
+          type: boolean
+          example: true
+        enabled:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          example: "2022-01-01"
+        updated_at: 
+          type: string
+          example: "2022-01-01"
+#create for prestador
+    CreatePrestador:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: "servico de limpeza"
+        taxaUrgencia:
+          type: number
+          example: 1000
+        profissao:
+          type: string
+          example: "servico de limpeza"
+        minimoParaDesconto:
+          type: number
+          example:  
+        nif:
+          type: string
+          example: "123456789"
+        percentagemDesconto:
+          type: number
+          example: 10
+        precoHora:
+          type: number
+          example: 1000
+        disponivel:
+          type: boolean
+          example: true
+        enabled:
+          type: boolean
+          example: true
+#schemas genericos para sucesso
+    ResponseSucess:
+      type: object
+      properities:
+      message:
+        type: srtring
+        example: "Servico criado comm sucesso"
+      status:
+        type: bollean
+        example: true
+      date:
+        type: object
+        $ref: "#components/schemas/prestacao"
+  
+    #schemas generico de resposta de erro
+    ReferencesError:
+      type: object
+      properties:
+        message: 
+          type: string
+          example: error ao buscar prestacao 
+        status:
+          type: bollean
+          example: false
+        data:
+          type: object
+          properties:
+    

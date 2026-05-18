@@ -1,0 +1,210 @@
+# export interface categoriaDBType {
+#     id: string,
+#     nome_utilizador: string,
+#     email_utilizador: string,
+#     nome_servico: string,
+#     descricao: string,
+#     data_pedido: string,
+#     estado: string,
+#     urgente: boolean,
+#     enabled: boolean,
+#     created_at: string,
+#     updated_at: string
+# }
+
+paths:
+  /categoria:
+    get:
+      tags:
+        - categoria
+      summary: listar todas as categorias
+      description: retorna ums lista de todas as categorias disponiveis
+      responses:
+        "200":
+          descriptions: lista de categorias
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          descripitions: nenhuma categoria encontrada
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /categoria/create:
+    post:
+      tags:
+        - categoria
+      summary: criar uma nova categoria
+      description: criar uma nova categoria
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/categoria"
+      responses:
+        "200":
+          description: "categoria criada com sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          description: " dados invalidos"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /categoria/get:
+    get:
+      tags:
+        - categoria
+      summary: buscar uma categoria por id
+      description: retorna uma categoria especifica
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de categoria
+          schema:
+            type: intenger
+            example: 1
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/categoria"
+      responses:
+        "200":
+          description:
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: "categoria nao encontrada"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+  /categora/getAll/{id}:
+    get:
+      tags:
+        - categoria
+      summary: buscar todas as categorias de um utilizador
+      description: retorna uma lista de todas as categorias de um utilizadora
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de categoria
+          schema:
+            type: intenger
+            example: 1
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/categoria"
+      responses:
+        "200":
+          description: lista de categorias
+          content:
+            aplication/json:
+              schema:
+                type: array
+                items:
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: nenhum categoria encontrado
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+  /categoria/update/{id}:
+    put:
+      tags:
+        - categoria
+      summary: atualizar uma categoria por id 
+      description: atualizar uma categoria especifica por id
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de uma categoria a ser atualizado
+          schema:
+            type: interger
+            example: 1
+      requestBody:
+        required: true
+      content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/categoria"
+      responses:
+        "200":
+          description: categoria atualizada com sucesso
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          decription: dados invalidos
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+                
+  /categoria/delete/{id}:
+    delete:
+      tags:
+        - categoria
+      summary: deletar categoria
+      description: apagar categoria especifica por id
+      parametres:
+      - nome: id
+        in: path
+        required: true
+        description: id de categoria apagada
+        schema:
+          type: interger
+          example: 1
+      requestBody:
+        required: true
+      content:
+        aplication/json:
+          schema:
+            $ref: "#/components/schemas/categoria"
+      responses:
+        "200":
+          description: categoria apagada com sucesso
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: categoria nao encontrada
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+
+
+  

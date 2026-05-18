@@ -1,0 +1,201 @@
+# export interface EmpresaDBType {
+#     id: string,
+#     designacao: string,
+#     descricao: string,
+#     nif: string,
+#     icone: string,
+#     id_utilizador: string,
+#     localizacao:string,
+#     enabled: boolean,
+#     created_at: string,
+#     updated_at: string
+# }
+
+paths:
+  /empresa:
+    get:
+      tags:
+        - empresa
+      summary: listar todas as empresas
+      description: retorna ums lista de todas as empresas disponiveis
+      responses:
+        "200":
+          descriptions: lista de empresas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: dados invalidos
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /empresa/create:
+    post:
+      tags:
+        - empresa
+      summary: criar uma nova empresa
+      description: criar uma nova empresa
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/CreateEmpresa"
+      responses:
+        "200":
+          description: "empresa criada com sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          description: " dados invalidos"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /empresa/get:
+    get:
+      tags:
+        - empresa
+      summary: buscar uma empresa por id
+      description: retorna uma empresa especifica
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de empresa
+          schema:
+            type: intenger
+            example: 1
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/empresa"
+      responses:
+        "200":
+          description: empresa encontrada
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: "empresa nao encontrada"
+          content:
+            aplication/json:  
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /empresa/getAll/{id}:
+    get:
+      tags:
+      - empresa
+      summary: buscar todas as empresas de um utilizador
+      description: retorna uma lista de todas as empresas de um utilizadora empresa
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de empresa
+          schema:
+            type: intenger
+            example: 1
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/empresa"
+          responses:
+           "200":
+            description: lista de empresas
+            content:
+              aplication/json:
+                schema:
+                  type: array
+                  items:
+                  $ref: "#/components/schemas/ResponseSucess"
+           "404":
+            description: nenhum empresa encontrado
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                  $ref: "#/components/schemas/ReferencesError"
+  /empresa/update/{id}:
+    put:
+      tags:
+        - empresa
+      summary: atualizar uma empresa
+      description: atualizar uma empresa especifica por id
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de uma empresa a ser atualizado
+          schema:
+            type: interger
+            example: 1
+      requestBody:
+        required: true
+      content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/empresa"
+      responses:
+        "200":
+          description: empresa atualizada com sucesso
+          content:
+          aplication/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          decription: dados invalidos
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+  /empresa/delete/{id}:
+    delete:
+      tags:
+        - empresa
+      summary: deletar empresa
+      description: apagar empresa especifica por id
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de empresa apagada
+          schema:
+            type: interger
+            example: 1
+          content:
+           aplication/json:
+            schema:
+              $ref: "#/components/schemas/empresa"
+      responses:
+        "200":
+          description: empresa apagada com sucesso
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: empresa nao encontrada
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"

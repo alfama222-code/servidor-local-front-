@@ -1,0 +1,103 @@
+      # schemas/servico.yaml
+
+components:
+ schemas:
+  servico:
+    type: object
+    properties:
+      id:
+        type: intenger
+        example: 1
+      nome:
+        type: string
+        example: "servico de limpeza"
+      descreptions:
+        type: string
+        example: "servico de limpeza para residiencias"
+      categorias:
+        type: string
+        example: "limpeza"
+      enabled:
+        type: boolean
+        example: true
+      created_at:
+        type: string
+        example: "2022-01-01"
+      updated_at: 
+        type: string
+        example: "2022-01-01"
+  #schemas para criar um novo servico
+  CreateServico:
+    type: object
+    properities:
+      nome:
+        type: string
+        examples: "servico de limpeza"
+      descricao:
+        type: string
+        example: " servico de limpeza profissional para resilencia e"
+      categorias:
+        type: string
+        example: limpeza
+      enabled:
+        type: bollean
+        example: true
+  #schema para buscar servico detalhada
+  ServicoDetalhada:
+    type: object
+    properties:
+      id:
+        type: intenger
+        example: 1
+      nome:
+        type: string
+        example: "servico de limpeza"
+      descricao:
+        type: string
+        example: "servico de limpeza para residiencias"
+      id_categoria:
+        type: string
+        example: 1
+      id_empresa:
+        type: string
+        example: 1
+      enabled:
+        type: boolean
+        example: true
+      created_at:
+        type: string
+        example: "2022-01-01"
+      updated_at: 
+        type: string
+        example: "2022-01-01"
+  #schemas genericos para sucesso
+  ResponseSucess:
+    type: object
+    properities:
+    message:
+      type: srtring
+      example: "Servico criado comm sucesso"
+    status:
+      type: bollean
+      example: true
+    date:
+      type: object
+      $ref: "#components/schemas/servico"
+ 
+  #schemas generico de resposta de erro
+  ReferencesError:
+    type: object
+    properties:
+      message: 
+        type: string
+        example: error ao buscar servico 
+      status:
+        type: bollean
+        example: false
+      data:
+        type: object
+        properties:
+  
+  
+
+

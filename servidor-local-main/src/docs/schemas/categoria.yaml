@@ -1,0 +1,99 @@
+# export interface categoriaDBType {
+#     id: string,
+#     nome_utilizador: string,
+#     email_utilizador: string,
+#     nome_servico: string,
+#     descricao: string,
+#     data_pedido: string,
+#     estado: string,
+#     urgente: boolean,
+#     enabled: boolean,
+#     created_at: string,
+#     updated_at: string
+# }
+components:
+  schemas:
+    categoria:
+      type: object
+      properties:
+        id:
+          type: intenger
+          example: 1
+        nome_utilizador:
+          type: string
+          example: "servico de limpeza"
+        email_utilizador:
+          type: string
+          example: "servico de limpeza"
+        nome_servico:
+          type: string
+          example: "servico de limpeza"
+        descricao:
+          type: string
+          example: "servico de limpeza para residiencias"
+        data_pedido:
+          type: string
+          example: "2022-01-01" 
+        estado:
+          type: string
+          example: "aceita"
+        urgente:
+          type: object
+          example: true
+        enabled:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          example: "2022-01-01"
+        updated_at: 
+          type: string
+          example: "2022-01-01"
+    #create categoria
+    Create:        
+      type: object
+      properties:
+        nome_utilizador:
+          type: string
+          example: "servico de limpeza"
+        email_utilizador:
+          type: string
+          example: "servico de limpeza"
+        nome_servico:
+          type: string
+          example: "servico de limpeza"
+        enabled:
+          type: boolean
+          example: true
+          #schemas genericos para sucesso
+    ResponseSucess:
+      type: object
+      properities:
+      message:
+        type: srtring
+        example: "Servico criado comm sucesso"
+      status:
+        type: bollean
+        example: true
+      date:
+        type: object
+        $ref: "#components/schemas/categoria"
+
+        #schemas genericos de resp9ostas para erro
+    ReferencesError:
+      type: object
+      properties:
+      message: 
+        type: string
+        example: error ao buscar categoria 
+      status:
+        type: bollean
+        example: false
+      data:
+        type: object
+        properties:
+
+
+
+
+

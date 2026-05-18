@@ -1,0 +1,177 @@
+# export interface propostaType {
+#     id: string,
+#     id_prestacao: number,
+#     precoHora: number,
+#     horaEstimadas: number,
+#     estado: string,
+#     enabled: boolean,
+#     created_at: string,
+#     updated_at: string
+# }
+
+paths:
+  /proposta:
+    get:
+      tags:
+        - proposta
+      summary: listar todas as propostas
+      description: retorna ums lista de todas as propostas disponiveis
+      responses:
+        "200":
+          descriptions: lista de propostas
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          descripitions: nenhuma proposta encontrada
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+        "400":
+          description: dados invalidos
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+
+
+  /proposta/create:
+    post: 
+      tags:
+        - proposta
+      summary: criar uma nova proposta
+      descripition: criar uma nova proposta
+      requestbody: 
+        requiered: true
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/CreateProposta"
+      responses:
+        "200":
+          description: "proposta criada com sucesso"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          description: " dados invalidos"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /proposta/getall:
+    get:
+      tags:
+        - proposta
+      summary: buscar uma proposta por id 
+      description: retorna uma proposta especifico
+      parametres:
+          - nome: id
+            in: path
+            required: true
+            description: id de proposta
+            schema:
+              type: intenger
+              example: 1
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                $ref: "#/components/schemas/proposta"
+      responses: 
+        "200":
+          description: proposta encontrada
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "404":
+          description: " proposta nao encontrada"
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+  /proposta/update/{id}:
+    put:
+      tags:
+        - proposta
+      summary: atualizar uma proposta 
+      description: atualizar uma proposta expecifico por id 
+      parametres:
+        - nome: id
+          in: path
+          required: true
+          description: id de uma proposta a ser atualizado
+          schema:
+            type: interger
+            example:
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/schemas/proposta"
+      respponses:
+        "200":
+          description: proposta atualizada com sucesso
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ResponseSucess"
+        "400":
+          decription: dados invalidos
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError"
+        "404":
+          description: " proposta nao encontrada"
+          content:
+            aplication/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/ReferencesError" 
+  /proposta/delete/{id}:
+      delete:
+        tags:
+          - proposta
+        summary: deletar proposta
+        description: apagar proposta especifico por id
+        parametres:
+        - nome: id
+          in: path
+          required: true
+          content:
+            aplication/json:
+              schema:
+                $ref: "#/components/schemas/proposta"
+        responses:
+          "200":
+            description: proposta encontrada
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                  $ref: "#/components/schemas/ResponseSucess"
+          "404":
+            description: proposta nao encontrada
+            content:
+              aplication/json:
+                schema:
+                  type: object
+                  $ref: "#/components/schemas/ReferencesError"   
+                 
+ 
+               

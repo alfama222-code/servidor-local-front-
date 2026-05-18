@@ -1,0 +1,163 @@
+#--paths/servico.yaml--#
+
+
+paths:
+  #buscar todos os servicos
+  /Servico:
+    get:
+      tags:
+        - Service *
+      summary: Buscar todos os servicos
+      description: Retorna todos os servicos
+      responses:
+        "200":
+          description: Servicos encontrados com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Servico"
+        "404":
+          description: Servicos nao encontrados
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicoResponseError"
+
+
+  #criar servico
+  "/Servico/create":
+    post:
+      tags:
+        - Service *
+      summary: Criar um novo servico
+      description: Insere um novo servico
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateServico"
+      responses:
+        "200":
+          description: Servico criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Servico"
+        "400":
+          description: Dados invalidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicoResponseError"
+
+
+  #buscar servico por id
+  "/Servico/get-by-id/{id}":
+    get:
+      tags:
+        - Service *
+      summary: Buscar servico por ID
+      description: Retorna um servico pelo seu ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id do servico
+          schema:
+            type: string
+            example: "1"
+      responses:
+        "200":
+          description: Servico encontrado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Servico"
+                
+        "404":
+          description: Servico nao encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicoResponseError"
+
+
+  #atualizar servico
+  "/Servico/update/{id}":
+    put:
+      tags:
+        - Service *
+      summary: Atualizar um servico
+      description: Atualiza um servico existente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id do servico a ser atualizado
+          schema:
+            type: string
+            example: "1"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateServico"
+      responses:
+        "200":
+          description: Servico atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Servico"
+        "400":
+          description: Dados invalidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicoResponseError"
+        "404":
+          description: Servico nao encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicoResponseError"
+
+
+  #deletar servico
+  "/Servico/delete/{id}":
+    delete:
+      tags:
+        - Service *
+      summary: Apagar um servico
+      description: Apagar um servico existente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id do servico a ser apagado
+          schema:
+            type: string
+            example: "1"
+      responses:
+        "200":
+          description: Servico apagado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Servico"
+        "400":
+          description: Dados invalidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicoResponseError"
+        "404":
+          description: Servico nao encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/servicoResponseError"
