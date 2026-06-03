@@ -51,6 +51,7 @@ export const Tavela = () => {
     };
 
     return (
+
         <div>
             <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4">
                 <span className="text-2xl font-bold">
@@ -118,7 +119,6 @@ export const Tavela = () => {
                                 </button>
                             </td>
                         </tr>
-
                         {/* Dados vindos da API */}
                         {prestacaoServico.map((item: any) => (
                             <tr
@@ -136,7 +136,7 @@ export const Tavela = () => {
 
                                         <div className="flex flex-col">
                                             <p className="font-bold">
-                                                {item.disignacao}
+                                                {item.designacao}
 
                                             </p>
 
@@ -149,12 +149,11 @@ export const Tavela = () => {
 
                                 <td className="text-left px-4 py-2">
                                     <span
-                                        className={`${item.estado === "pendente"
-                                            ? "bg-orange-100 text-orange-500"
-                                            : item.estado === "aceite"
-                                                ? "bg-green-50 text-green-500"
-                                                : "bg-red-50 text-red-500"
-                                            } rounded-xl px-4 py-2 font-semibold text-sm inline-block`}
+                                        className={`${item.estado === "pendente" ? "bg-orange-100 text-orange-500"
+                                            : item.estado === "aceite" ? "bg-green-50 text-green-500"
+                                                : item.estado === "Ação pedida" ? "bg-blue-50 text-blue-500"
+                                                    : "bg-red-50 text-red-500"}
+                                         rounded-xl px-4 py-2 font-semibold text-sm inline-block`}
                                     >
                                         {item.estado}
                                     </span>
@@ -180,9 +179,72 @@ export const Tavela = () => {
                                 </td>
                             </tr>
                         ))}
+                        {prestacaoServico.map((item: any) => (
+                            <tr
+                                key={item.id}
+                                className="border-t border-slate-200 dark:border-slate-700"
+                            >
+                                <td className="text-left px-4 py-2">
+                                    <div className="flex items-center gap-3">
+                                        <Avatar>
+                                            <AvatarImage src="https://github.com/shadcn.png" />
+                                            <AvatarFallback>
+                                                CN
+                                            </AvatarFallback>
+                                        </Avatar>
+
+                                        <div className="flex flex-col">
+                                            <p className="font-bold">
+                                                {item.designacao}
+
+                                            </p>
+
+                                            <span className="text-slate-500">
+                                                {item.categoria.nome}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td className="text-left px-4 py-2">
+                                    <span
+                                        className={`${item.estado === "Pendente"
+                                            ? "bg-orange-100 text-orange-500 uppercase"
+                                            : item.estado === "Aceite"
+                                                ? "bg-green-50 text-green-500 uppercase"
+
+                                                : item.estado === "Ação pedida" ? "bg-blue-50 text-blue-500 uppercase"
+                                                    : "bg-red-50 text-red-500 uppercase"
+                                            } rounded-xl px-4 py-2 font-semibold text-sm inline-block`}
+                                    >
+                                        {item.estado}
+                                    </span>
+                                </td>
+
+                                <td className="text-left px-4 py-2">
+                                    <p className="text-slate-500">
+                                        {item.subtotal}
+                                    </p>
+                                </td>
+
+                                <td className="text-left px-4 py-2">
+                                    <span className="text-slate-500">
+                                        {item.data}
+                                    </span>
+                                </td>
+
+                                <td className="text-left px-4 py-2">
+                                    <Button className="bg-blue-600 text-white hover:bg-blue-500 opacity-90 cursor-pointer font-semibold rounded-xl px-4 py-2 h-auto">
+                                        Review quote
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
+
+
     );
 };
