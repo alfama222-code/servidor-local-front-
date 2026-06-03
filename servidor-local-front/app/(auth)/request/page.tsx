@@ -1,13 +1,9 @@
-"use client"
 import BannerRequest from "@/components/banner-request/banner";
 import NaveBar from "@/components/navbar/nav-request";
-import { Tavela } from "@/components/tabela/tavela";
-import { useState } from "react";
+import { RequestTable } from "@/components/tabela/table";
 
 
 export default function RequestPage() {
-
-    const [categorias, setCategorias] = useState([]);
 
     return (
         <>
@@ -15,7 +11,7 @@ export default function RequestPage() {
                 <NaveBar />
             </div>
             <BannerRequest />
-            <Tavela />
+            <RequestTable />
         </>
     );
 }

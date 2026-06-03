@@ -2,7 +2,7 @@ import { Bell, Search } from "lucide-react";
 import { Button } from "../ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "../drawer";
 import BellIcon from "@/assets/icons/bell-icon";
-import NavLinks from "./nav-linls";
+import NavLinks from "./nav-links";
 
 
 export default function NaveBar() {
@@ -65,4 +65,3 @@ export default function NaveBar() {
 
     )
 }
-
