@@ -36,8 +36,8 @@ export default function ProposalPage() {
                     }
                 }
             }
-        }`
-
+        }
+  `
 
     function getAllProposta(): any {    
         const { data, loading, error } = useQuery<PropostaRequest>(dataQuery);
